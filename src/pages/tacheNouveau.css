@@ -1,0 +1,6 @@
+/* Fiche « Nouvelle tâche » : s'appuie sur clientNouveau.css et prestationNouveau.css (même tableau de contrôle : cases, cercles, boutons, lignes…).
+   Ici : seulement les petits textes propres aux tâches.
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y). */
+
+.tn-hint { --size: 17px; --weight: 400; --width: 75%; --lh: 1.3; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.65; }  /* « S'il n'y en a pas… » */
+.tn-num  { opacity: 0.55; }  /* numéro devant chaque sous-tâche */

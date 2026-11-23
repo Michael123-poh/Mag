@@ -1,0 +1,57 @@
+/* Facture pour imprimante thermique 80 mm : une colonne étroite, noir sur blanc, sans cadres ni couleurs (la thermique n'imprime que du noir).
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y).
+
+   ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  1. TABLEAU DE CONTRÔLE : largeur du ticket, marges, espaces             ║
+   ║  2. TEXTES : chaque texte a sa classe (.tk-*)                            ║
+   ║  3. MISE EN FORME + IMPRESSION                                           ║
+   ╚══════════════════════════════════════════════════════════════════════════╝ */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+.tk-ticket {
+  --ticket-w: 72mm;              /* largeur imprimée : 72 mm pour un rouleau de 80 mm (mettez 76mm si votre imprimante imprime plus large) */
+  --ticket-pad: 3mm 2mm 14mm;    /* marges intérieures (haut, côtés, bas : le bas laisse de la place pour la coupe) */
+  --block-gap: 6px;              /* espace entre deux blocs */
+  --line-gap: 4px;               /* espace entre deux lignes d'un détail */
+  --rule: 1.5px dashed #000;     /* trait de séparation (pointillés) */
+  --screen-zoom: 1.7;            /* agrandissement à l'ÉCRAN seulement (l'impression reste à la taille réelle) */
+}
+
+/* ==========================================================================
+   2. TEXTES (noir pur : meilleure lisibilité à l'impression thermique)
+   ========================================================================== */
+.tk-company { --font: var(--f-anton); --size: 28px; --weight: 400; --width: 85%; --lh: 1.05; --ls: 0.02em; --x: 0px; --y: 0px; }
+.tk-title   { --size: 22px; --weight: 800; --width: 80%; --lh: 0.7; --ls: 0.08em; --x: 0px; --y: 0px; margin-top: 2px; }
+.tk-number  { --size: 18px; --weight: 700; --width: 78%; --lh: 1.02; --ls: 0em; --x: 0px; --y: 0px; }
+.tk-status  { --size: 13px; --weight: 700; --width: 78%; --lh: 1.1; --ls: 0.05em; --x: 0px; --y: 0px; display: inline-block; margin-top: 4px; padding: 2px 8px; border: 1.5px solid #000; }
+.tk-label   { --size: 14px; --weight: 800; --width: 78%; --lh: 1.2; --ls: 0.06em; --x: 0px; --y: 0px; text-transform: uppercase; margin-bottom: 3px; }
+.tk-name    { --size: 18px; --weight: 700; --width: 78%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.tk-text    { --size: 14px; --weight: 500; --width: 78%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.tk-small   { --size: 12.5px; --weight: 500; --width: 75%; --lh: 1.12; --ls: 0em; --x: 0px; --y: 0px; }
+.tk-big     { --size: 21px; --weight: 800; --width: 78%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ==========================================================================
+   3. MISE EN FORME
+   ========================================================================== */
+.tk-ticket { width: var(--ticket-w); max-width: 100%; margin: 0 auto; padding: var(--ticket-pad); background: #fff; color: #000; display: flex; flex-direction: column; gap: var(--block-gap); zoom: var(--screen-zoom); box-shadow: 0 10px 30px rgb(9 48 93 / 14%); }
+.tk-ticket p, .tk-ticket span { color: #000; margin: 0; }
+.tk-center  { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.tk-rule    { border: 0; border-top: var(--rule); margin: 2px 0; }
+.tk-row     { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.tk-row > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.tk-amount  { white-space: nowrap; text-align: right; }
+.tk-strong span { font-weight: 800; }
+.tk-strong .tk-text { --size: 15px; --lh: 1.2; }  /* les lignes en gras gardent leur taille d'origine */
+.tk-group   { margin-top: var(--block-gap); display: flex; flex-direction: column; gap: var(--line-gap); }
+.tk-line    { display: flex; flex-direction: column; gap: 1px; padding-left: 8px; }
+.tk-words   { margin-top: 6px; }
+
+/* ==========================================================================
+   IMPRESSION : le ticket seul, à sa taille réelle
+   ========================================================================== */
+@media print {
+  .tk-ticket { zoom: 1; box-shadow: none; width: var(--ticket-w); max-width: none; margin: 0 auto; }  /* centré sur les 80 mm du rouleau */
+  .tk-ticket * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

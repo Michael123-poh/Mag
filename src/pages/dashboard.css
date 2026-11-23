@@ -1,0 +1,82 @@
+/* Textes du Dashboard.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+   (l'en-tête « Hello Michael ! » et la date sont dans src/styles/header.css)
+
+   Variables : --size (taille) · --weight (gras) · --lh (interligne)
+               --ls (espacement des lettres) · --x / --y (position) */
+
+/* ---- Carte Entrées / Sorties ------------------------------------------- */
+.d-flow-label    { --size: 14px; --weight: 400; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-flow-period   { --size: 12px; --weight: 600; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-flow-amount   { --size: 28px; --weight: 400; --lh: 1;   --ls: 0em; --x: 50px; --y: 0px; }
+.d-flow-unit     { --size: 16px; --weight: 400; --lh: 1;   --ls: 0em; --x: 50px; --y: 0px; }
+.d-flow-voir     { --size: 13px; --weight: 500; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Carte Projet / Impression ----------------------------------------- */
+.d-act-label     { --size: 14px; --weight: 400; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-act-voir      { --size: 13px; --weight: 500; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-act-value     { --size: 28px; --weight: 400; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.d-act-caption   { --size: 12px; --weight: 400; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Alert Stock -------------------------------------------------------- */
+.d-alert-title   { --size: 20px; --weight: 500; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-alert-number  { --size: 30px; --weight: 400; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.d-alert-caption { --size: 13px; --weight: 400; --lh: 1.25;--ls: 0em; --x: 0px; --y: 0px; }
+.d-alert-voir    { --size: 13px; --weight: 500; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Progression -------------------------------------------------------- */
+.d-prog-title    { --size: 20px; --weight: 500; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-prog-number   { --size: 30px; --weight: 400; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.d-prog-caption  { --size: 13px; --weight: 400; --lh: 1.25;--ls: 0em; --x: 0px; --y: 0px; }
+.d-prog-voir     { --size: 13px; --weight: 500; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Note --------------------------------------------------------------- */
+.d-note-title    { --size: 20px; --weight: 700; --lh: 1.2;   --ls: -0.03em; --x: 0px; --y: 0px; }
+.d-note-item     { --size: 16px; --weight: 400; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Projet en cours ---------------------------------------------------- */
+.d-proj-title    { --size: 22px; --weight: 700; --lh: 1;    --ls: 0.025em; --x: 0px; --y: 0px; }
+.d-proj-index    { --size: 20px; --weight: 600; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+.d-proj-name     { --size: 17px; --weight: 500; --lh: 1.25; --ls: 0em;     --x: 0px; --y: 0px; }
+.d-proj-date     { --size: 12.3px; --weight: 400; --lh: 1; --ls: 0em;     --x: 0px; --y: 0px; }
+.d-proj-pct      { --size: 18px; --weight: 600; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+.d-proj-voir     { --size: 13px; --weight: 500; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+
+/* ---- Graphique Facturé / Encaissé / Décaissé --------------------------- */
+/* Espacements de la légende :
+   column-gap = espace entre Facturé / Encaissé / Décaissé (horizontal)
+   row-gap    = espace entre les lignes si la légende passe à la ligne
+   gap (item) = espace entre le point de couleur et son texte */
+.d-chart-legend      { margin-top: 23px; column-gap: 100px; row-gap: 8px; margin-bottom: 10px;}
+.d-chart-legend-item { gap: 10px; }
+
+.d-chart-legend-label { --size: 14px; --weight: 500; --lh: 0.5; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-legend-total { --size: 22px; --weight: 400; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-legend-unit  { --size: 13px; --weight: 400; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-ytick        { --size: 13.5px; --weight: 700; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-ytick-unit   { --size: 9px;  --weight: 700; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-month        { --size: 13.5px; --weight: 700; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-period-label { --size: 19px; --weight: 800; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.d-chart-period-value { --size: 16px; --weight: 400; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Gains net / Produit ------------------------------------------------ */
+.d-gains-title   { --size: 19px; --weight: 700; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Gains net / Produit : détail de la part sélectionnée -------------- */
+.d-gains-type        { --size: 14px; --weight: 500; --width: 75%; --lh: 1;   --ls: 0.05em; --x: 0px; --y: 0px; }
+.d-gains-name        { --size: 28px; --weight: 700; --width: 75%; --lh: 1.1; --ls: 0em;    --x: 0px; --y: 0px; }
+.d-gains-net         { --size: 34px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em;    --x: 0px; --y: 0px; }
+.d-gains-net-unit    { --size: 16px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em;    --x: 0px; --y: 0px; }
+.d-gains-share       { --size: 18px; --weight: 600; --width: 75%; --lh: 1;   --ls: 0em;    --x: 0px; --y: 0px; }
+.d-gains-stat-label  { --size: 13px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em;    --x: 0px; --y: 0px; }
+.d-gains-stat-value  { --size: 20px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em;    --x: 0px; --y: 0px; }
+.d-gains-legend      { --size: 13px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em;    --x: 0px; --y: 0px; }
+
+/* ---- Clients qui nous doivent de l'argent ------------------------------ */
+.d-debt-title    { --font: var(--f-anton); --size: 22px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0.025em; --x: 0px; --y: 0px; }
+.d-debt-total    { --size: 14px; --weight: 400; --width: 75%; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+.d-debt-name     { --size: 17px; --weight: 500; --width: 75%; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+.d-debt-ref      { --size: 11px; --weight: 400; --width: 75%; --lh: 1.25; --ls: 0em;     --x: 0px; --y: 0px; }
+.d-debt-amount   { --size: 16px; --weight: 600; --width: 75%; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+.d-debt-badge    { --size: 12px; --weight: 600; --width: 75%; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }
+.d-debt-voir     { --size: 13px; --weight: 500; --width: 75%; --lh: 1.2;  --ls: 0em;     --x: 0px; --y: 0px; }

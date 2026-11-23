@@ -1,0 +1,50 @@
+/* Textes et mise en page de la page Factures.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+
+   Variables : --font (police) · --size (taille) · --weight (gras) · --width (largeur des lettres)
+               --lh (interligne) · --ls (espacement des lettres) · --x / --y (position) */
+
+/* ---- En-tête ------------------------------------------------------------ */
+.fa-title    { --font: var(--f-anton); --size: 40px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-subtitle { --size: 22px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.fa-new-btn  { --size: 20px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Recherche + filtres ------------------------------------------------- */
+/* margin-top = distance entre l'en-tête et cette ligne · --search-w = largeur de la recherche */
+.fa-filters-wrap { margin-top: 28px; }
+.fa-filters      { --search-w: 380px; column-gap: 16px; row-gap: 12px; }
+.fa-search       { width: var(--search-w); max-width: 100%; }
+
+.fa-search-text  { --size: 20px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-select-label { --size: 18px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-select       { --size: 18px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Cartes de factures -------------------------------------------------- */
+/* row-gap (.fa-list) = espace entre deux factures · padding (.fa-card) = air intérieur
+   .fa-top / .fa-bottom = rangées du haut et du bas · .fa-cols column-gap = espace entre les colonnes
+   .fa-bottom margin-top = espace entre les deux rangées */
+.fa-list   { row-gap: 14px; margin-top: 28px; }
+.fa-card   { padding: 18px 22px; }
+.fa-card   { --col-w: 135px; }           /* --col-w = largeur de chaque colonne (alignées d'une facture à l'autre) */
+.fa-cols   { column-gap: 24px; row-gap: 10px; }
+.fa-cols > div { width: var(--col-w); }
+.fa-bottom { margin-top: 22px; row-gap: 12px; }
+/* Rangée du bas (Encaissé, Reste à payer, Versements, Compte, Statut) :
+   --col-w = largeur de chaque colonne · column-gap = espace entre les colonnes (plus petit = plus serré) */
+.fa-bottom .fa-cols { --col-w: 105px; column-gap: 8px; }
+/* Le statut garde sa place d'origine : margin-left = distance entre « Compte » et « Statut » */
+.fa-status-field { margin-left: 184px; }
+.fa-top    { row-gap: 12px; column-gap: 24px; }
+
+.fa-client { --size: 24px; --weight: 650; --width: 70%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-number { --size: 14px; --weight: 400; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-label  { --size: 12px; --weight: 500; --width: 70%; --lh: 1;   --ls: 0.04em; --x: 0px; --y: 0px; }
+.fa-value  { --size: 18px; --weight: 500; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-value-unit { --size: 12px; --weight: 300; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-status { --size: 15px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fa-view-text { --size: 16px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Menu « Autres actions » ---------------------------------------------- */
+.fa-menu       { min-width: 210px; }
+.fa-menu-title { --size: 12px; --weight: 500; --width: 70%; --lh: 1.2; --ls: 0.04em; --x: 0px; --y: 0px; }
+.fa-menu-item  { --size: 17px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }

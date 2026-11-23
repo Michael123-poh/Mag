@@ -1,0 +1,7 @@
+Images des machines (page Rapport).
+
+1. Déposez ici l'image de chaque machine (png, jpg ou webp ; fond transparent de préférence).
+2. Indiquez son nom de fichier dans la colonne `image` de la table `machines`,
+   par exemple : UPDATE machines SET image = 'xerox7835.png' WHERE id = 1;
+
+Sans image, une imprimante dessinée s'affiche à la place.

@@ -1,0 +1,138 @@
+/* Textes et mise en page de la page Prestation.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+
+   Variables : --font (police) · --size (taille) · --weight (gras) · --width (largeur des lettres)
+               --lh (interligne) · --ls (espacement des lettres) · --x / --y (position) */
+
+/* ---- En-tête ------------------------------------------------------------ */
+.pr-title    { --font: var(--f-anton); --size: 40px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-subtitle { --size: 22px; --weight: 400; --width: 75%; --lh: 0.7;   --ls: 0em; --x: 0px; --y: 0px; }
+.pr-new-btn  { --size: 20px; --weight: 400; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Cartes « dossier » (mêmes réglages que la page Clients) ------------- */
+.pr-folders        { --card-w: 320px; column-gap: 30px; row-gap: 20px; margin-top: 38px; }  /* --card-w = taille des cartes · column-gap = espace horizontal entre les cartes */
+@media (min-width: 768px) {
+  .pr-folders      { grid-template-columns: repeat(3, minmax(0, var(--card-w))); justify-content: center; }
+}
+.pr-folder-card    { max-width: var(--card-w); }
+/* Avatars : --x / --y les déplacent (mettre la même valeur --x que les textes pour les aligner) */
+.pr-folder-avatars { --x: 30px; --y: 0px; }
+.pr-folder-title   { --size: 18px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 30px; --y: -15px; }
+.pr-folder-count   { --size: 38px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 30px; --y: -15px; }
+.pr-folder-caption { --size: 15px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 30px; --y: 0px; }
+.pr-folder-tab     { --size: 14px; --weight: 500; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Liste des prestations ---------------------------------------------- */
+/* margin-top = distance entre les cartes et la liste (plus grand = liste plus basse) */
+.pr-list { margin-top: 60px; }
+
+.pr-code      { --size: 13px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-titre     { --size: 25.5px; --weight: 510; --width: 75%; --lh: 0.9;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-client    { --size: 18px; --weight: 420; --width: 75%; --lh: 0.8; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-details   { --size: 18px; --weight: 420; --width: 65%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-prix      { --size: 23px; --weight: 510; --width: 65%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }  /* prix de la prestation */
+.pr-prix-unit { --size: 16px; --weight: 300; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }  /* « xaf » */
+.pr-label     { --size: 13.5px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pill      { --size: 20px; --weight: 500; --width: 75%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pay       { --size: 25.5px; --weight: 510; --width: 75%; --lh: 0.85;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-ech-label { --size: 18px; --weight: 420; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-ech       { --size: 18px; --weight: 420; --width: 65%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Pop-up de filtres (mêmes réglages que la page Clients) -------------- */
+/* Tailles : --pop-w = largeur du pop-up · --row-gap = espace entre deux catégories
+   --cat-gap = espace entre le nom de la catégorie et ses filtres · --chip-indent = retrait des filtres
+   par rapport au nom de la catégorie (0 = alignés à gauche) · --chip-gap = espace entre les petites cartes */
+.pr-pop       { --pop-w: 900px; --row-gap: 18px; --cat-gap: 8px; --chip-indent: 28px; --chip-gap: 8px; }
+.pr-pop-panel { max-width: var(--pop-w); }
+.pr-pop-rows  { row-gap: var(--row-gap); }
+.pr-pop-row   { row-gap: var(--cat-gap); }
+.pr-pop-chips { gap: var(--chip-gap); padding-left: var(--chip-indent); }
+
+.pr-pop-title   { --size: 30px; --weight: 800; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pop-cat     { --size: 22px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pop-chip    { --size: 18px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pop-summary { --size: 16px; --weight: 400; --width: 75%; --lh: 1.3; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pop-btn     { --size: 18px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* Apparition du pop-up */
+.pr-pop-panel { animation: pr-pop-in 160ms ease-out; }
+@keyframes pr-pop-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Fiche d'une prestation (fenêtre au clic sur une ligne) --------------- */
+/* --sheet-w = largeur · --sheet-h = hauteur minimale (la fiche défile si l'écran est trop petit)
+   --section-gap = espace entre deux blocs · --cards-gap = espace entre les deux cartes · --statut-gap = espace entre les 3 boutons de statut
+   --statut-h = hauteur des boutons de statut · --line-pad = espace au-dessus/au-dessous d'une ligne du détail */
+.pr-sheet        { --sheet-w: 560px; --sheet-h: 700px; --section-gap: 24px; --cards-gap: 14px; --statut-gap: 10px; --statut-h: 44px; --line-pad: 11px; }
+.pr-sheet-panel  { max-width: var(--sheet-w); min-height: min(var(--sheet-h), 92vh); max-height: 92vh; overflow-y: auto; row-gap: var(--section-gap); animation: pr-pop-in 160ms ease-out; }
+.pr-sheet-cards  { column-gap: var(--cards-gap); }
+.pr-sheet-card   { min-height: 140px; }
+.pr-sheet-section { display: flex; flex-direction: column; row-gap: 8px; }
+
+/* Les trois boutons de statut : le choisi prend la couleur de sa pastille dans la liste */
+.pr-sheet-statuts { gap: var(--statut-gap); }
+.pr-sheet-statut  { flex: 1; height: var(--statut-h); border-radius: 9999px; background: var(--color-surface); color: var(--color-gaia-900); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+.pr-sheet-statut:hover:not(:disabled) { background: var(--color-gaia-200); }
+.pr-sheet-statut:disabled { opacity: 0.6; cursor: default; }
+.pr-sheet-statut[aria-checked="true"][data-statut="a_faire"]  { background: var(--color-danger); color: #fff; }
+.pr-sheet-statut[aria-checked="true"][data-statut="en_cours"] { background: var(--color-accent); color: #fff; }
+.pr-sheet-statut[aria-checked="true"][data-statut="livre"]    { background: var(--color-gaia-200); color: var(--color-gaia-900); }
+
+/* Détail de la prestation */
+.pr-sheet-line { padding: var(--line-pad) 0; border-bottom: 1px solid rgb(9 48 93 / 18%); }
+.pr-sheet-line:last-child { border-bottom: 0; }
+
+/* Ligne de la liste : fond blanc arrondi au survol
+   --row-pad-x = espace entre le bord du fond blanc et le texte (à gauche et à droite) · --row-pad-y = espace en haut et en bas
+   --row-radius = arrondi des coins · --row-bg = couleur du fond au survol · --row-line = couleur du trait entre deux prestations */
+.pr-list { --row-pad-x: 22px; --row-pad-y: 16px; --row-radius: 22px; --row-bg: #fff; --row-line: rgb(9 48 93 / 30%); }
+.pr-row {
+  position: relative;
+  padding: var(--row-pad-y) var(--row-pad-x);
+  margin-inline: calc(var(--row-pad-x) * -1); /* le texte reste aligné avec le reste de la page */
+  border-radius: var(--row-radius);
+  transition: background-color 0.15s ease;
+}
+/* Trait de séparation : il suit le texte (pas le fond) et disparaît au survol */
+.pr-row::after { content: ""; position: absolute; left: var(--row-pad-x); right: var(--row-pad-x); bottom: 0; border-bottom: 1px solid var(--row-line); transition: opacity 0.15s ease; }
+.pr-row:hover, .pr-row:focus-visible { background: var(--row-bg); outline: none; }
+.pr-row:hover::after, .pr-row:focus-visible::after { opacity: 0; }
+
+.pr-sheet-name         { --size: 30px; --weight: 700; --width: 70%; --lh: 1.05; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-client       { --size: 17px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-code         { --size: 14px; --weight: 400; --width: 70%; --lh: 1.3;  --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-title        { --size: 20px; --weight: 700; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-statut-text  { --size: 20px; --weight: 500; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-card-title   { --size: 15px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-card-value   { --size: 34px; --weight: 500; --width: 70%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-card-unit    { --size: 16px; --weight: 300; --width: 70%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-card-foot    { --size: 14px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-line-name    { --size: 19px; --weight: 500; --width: 70%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-line-sub     { --size: 15px; --weight: 400; --width: 70%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-line-total   { --size: 20px; --weight: 500; --width: 70%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-notes        { --size: 18px; --weight: 400; --width: 70%; --lh: 1.3;  --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-muted        { --size: 16px; --weight: 400; --width: 70%; --lh: 1.3;  --ls: 0em; --x: 0px; --y: 0px; opacity: 0.6; }
+.pr-sheet-error        { --size: 16px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; color: var(--color-danger); }
+.pr-sheet-foot         { --size: 14px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+
+/* Confirmation avant de passer une prestation à « Livré » */
+.pr-sheet-confirm      { padding: 12px 16px; border-radius: 16px; background: var(--color-surface); }
+.pr-sheet-confirm-text { --size: 17px; --weight: 500; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-sheet-confirm-btn  { --size: 17px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; cursor: pointer; }
+
+/* ---- Paiement depuis la fiche (le client paie au comptoir) ------------------ */
+.pr-pay-form   { display: flex; flex-direction: column; row-gap: 8px; }
+.pr-pay-detail { display: flex; flex-direction: column; row-gap: 4px; padding-top: 8px; border-top: 1px solid rgb(9 48 93 / 15%); }
+.pr-pay-chip   { padding: 6px 14px; border-radius: 9999px; background: var(--color-surface); cursor: pointer; }
+.pr-pay-chip[aria-checked="true"] { background: var(--color-gaia-700); color: #fff; }
+.pr-pay-chip .pr-pay-btn { padding: 0; }
+.pr-pay-line   { --size: 22px; --weight: 550; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pay-rest   { font-weight: 400; opacity: 0.7; }
+.pr-pay-status { --size: 18px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.8; }
+.pr-pay-label  { --size: 16px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pay-meta   { --size: 15px; --weight: 400; --width: 70%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.pr-pay-btn    { --size: 16px; --weight: 600; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; padding: 8px 18px; cursor: pointer; }
+.pr-pay-btn:disabled { opacity: 0.35; cursor: default; }
+.pr-pay-input  { --size: 18px; --weight: 500; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; height: 40px; padding: 0 14px; }

@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@import "./styles/typography.css";
+@import "./styles/hover.css";
+
+@theme {
+  --font-sans: "Acumin Variable Concept", "Barlow Condensed", system-ui, sans-serif;
+  --font-display: "Anton", "Barlow Condensed", sans-serif;
+
+  --color-gaia-900: #07264a;
+  --color-gaia-700: #09305d;
+  --color-gaia-500: #2f6fb8;
+  --color-gaia-200: #b7d0ee;
+  --color-accent: #ef7a1b;
+  --color-surface: #f2f2f2;
+  --color-muted: #a3a3a3;
+  --color-warn: #ef7a1b;
+  --color-danger: #e5483a;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* Aucune barre de scroll visible (le scroll reste actif) */
+* {
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--color-gaia-900);
+  font-family: var(--font-sans);
+  font-stretch: 75%; /* largeur par défaut : condensé (Acumin variable) */
+}

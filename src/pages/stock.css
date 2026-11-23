@@ -1,0 +1,91 @@
+/* Textes et mise en page de la page Stock.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+
+   Variables : --font (police) · --size (taille) · --weight (gras) · --width (largeur des lettres)
+               --lh (interligne) · --ls (espacement des lettres) · --x / --y (position) */
+
+/* ---- En-tête « Suivi » + date ------------------------------------------- */
+.stk-hdr-hello       { --font: var(--f-impact); --size: 34px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-hdr-name        { --size: 34px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-hdr-subtitle    { --size: 22px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-hdr-date-number { --size: 46px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-hdr-date-day    { --size: 24px; --weight: 400; --width: 75%; --lh: 0.9; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-hdr-date-month  { --size: 24px; --weight: 400; --width: 75%; --lh: 0.9; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Recherche + filtres (date, solde) ----------------------------------- */
+/* margin-top = distance entre l'en-tête et cette ligne · column-gap = espace entre la recherche et les sélecteurs
+   --search-w = largeur du champ de recherche */
+.stk-filters-wrap { margin-top: 28px; }
+.stk-filters      { --search-w: 380px; column-gap: 16px; row-gap: 12px; }
+.stk-search       { width: var(--search-w); max-width: 100%; }
+
+.stk-search-text  { --size: 20px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-select-label { --size: 18px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-select       { --size: 18px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Tableau des consommables ------------------------------------------- */
+/* margin-top = distance entre la barre de filtres et le tableau (plus grand = tableau plus bas) */
+.stk-table { margin-top: 40px; --row-pad: 18px; --row-radius: 18px; }
+/* Survol d'une ligne : fond blanc aux angles arrondis (--row-radius).
+   --row-pad = espace entre le bord de la ligne et le nom du produit (et à droite après les trois points) */
+.stk-row td                 { transition: background-color 150ms; }
+.stk-row:hover td           { background-color: rgb(255 255 255 / 0.7); }
+.stk-row td:first-child     { border-top-left-radius: var(--row-radius); border-bottom-left-radius: var(--row-radius); padding-left: var(--row-pad); }
+.stk-row td:last-child      { border-top-right-radius: var(--row-radius); border-bottom-right-radius: var(--row-radius); padding-right: var(--row-pad); }
+.stk-table th:first-child   { padding-left: var(--row-pad); }
+.stk-table th:last-child    { padding-right: var(--row-pad); }
+
+.stk-th         { --size: 18px; --weight: 400; --width: 60%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-code       { --size: 12px; --weight: 300; --width: 70%; --lh: 1.7;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-name       { --size: 22px; --weight: 550; --width: 70%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-supplier   { --size: 14.7px; --weight: 350; --width: 79%; --lh: 0.6;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-qty        { --size: 22px; --weight: 510; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-qty-unit   { --size: 14px; --weight: 300; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-seuil      { --size: 13px; --weight: 500; --width: 70%; --lh: 0.6;   --ls: 0em; --x: 0px; --y: 0px; }
+.stk-price      { --size: 22px; --weight: 510; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-price-unit { --size: 14px; --weight: 300; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-date       { --size: 22px; --weight: 510; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+/* Commandes (fiche produit) : une carte par commande, avec ses statuts et de quoi régulariser */
+.stk-ord-list    { gap: 12px; }
+.stk-ord         { padding: 14px 16px; display: flex; flex-direction: column; row-gap: 8px; }
+.stk-ord-ref     { --size: 19px; --weight: 700; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-ord-date    { font-weight: 400; opacity: 0.65; }
+.stk-ord-meta    { --size: 15px; --weight: 400; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-ord-label   { --size: 16px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-ord-value   { font-weight: 400; opacity: 0.7; margin-left: 6px; }
+.stk-ord-btn     { --size: 16px; --weight: 600; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; padding: 7px 16px; cursor: pointer; }
+.stk-ord-chip .stk-ord-btn { padding: 0; }
+.stk-ord-hist    { --size: 15px; --weight: 400; --width: 70%; --lh: 1.3; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-ord-error   { --size: 15px; --weight: 400; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; color: var(--color-danger); }
+.stk-ord-input   { --size: 18px; --weight: 500; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; height: 40px; padding: 0 14px; }
+.stk-ord-form    { display: flex; flex-direction: column; row-gap: 8px; }
+.stk-ord-chip    { padding: 6px 14px; border-radius: 9999px; background: #fff; cursor: pointer; }
+.stk-ord-chip[aria-checked="true"] { background: var(--color-gaia-700); color: #fff; }
+.stk-ord-detail  { display: flex; flex-direction: column; row-gap: 4px; padding-top: 8px; border-top: 1px solid rgb(9 48 93 / 15%); }
+.stk-ord-gap     { margin-top: 8px; }
+.stk-sheet-status-title { --size: 18px; --weight: 500; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-status { padding: 4px 0; }
+.stk-status     { --size: 17px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Fiche produit (fenêtre plus haute que large) ------------------------ */
+/* --sheet-w = largeur · --sheet-h = hauteur minimale (la fiche défile si l'écran est trop petit)
+   --section-gap = espace entre les blocs · --cards-gap = espace entre les 2 cartes */
+.stk-sheet        { --sheet-w: 460px; --sheet-h: 700px; --section-gap: 26px; --cards-gap: 14px; }
+.stk-sheet-panel  { max-width: var(--sheet-w); min-height: min(var(--sheet-h), 92vh); max-height: 92vh; overflow-y: auto; row-gap: var(--section-gap); }
+.stk-sheet-cards  { column-gap: var(--cards-gap); }
+.stk-sheet-card   { min-height: 150px; }
+.stk-sheet-section { display: flex; flex-direction: column; row-gap: 6px; }
+.stk-sheet-machines { gap: 6px 14px; }
+
+.stk-sheet-name         { --size: 30px; --weight: 700; --width: 70%; --lh: 1.05; --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-supplier     { --size: 16px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-code         { --size: 14px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 8px; }
+.stk-sheet-card-title   { --size: 15px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-card-value   { --size: 40px; --weight: 500; --width: 70%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-card-unit    { --size: 16px; --weight: 300; --width: 70%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-card-foot    { --size: 14px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-title        { --size: 20px; --weight: 700; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-machine      { --size: 19px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-amount       { --size: 28px; --weight: 500; --width: 70%; --lh: 1.1;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-amount-unit  { --size: 15px; --weight: 300; --width: 70%; --lh: 1.1;  --ls: 0em; --x: 0px; --y: 0px; }
+.stk-sheet-avg          { --size: 14px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }

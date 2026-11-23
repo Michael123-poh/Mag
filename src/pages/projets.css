@@ -1,0 +1,49 @@
+/* Textes et mise en page de la page Projets.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+
+   Variables : --font (police) · --size (taille) · --weight (gras) · --width (largeur des lettres)
+               --lh (interligne) · --ls (espacement des lettres) · --x / --y (position) */
+
+/* ---- Haut de page : calendrier à gauche, équipe à droite ----------------- */
+/* column-gap = espace entre le calendrier et les cartes d'équipe · --members-gap = espace entre les cartes d'équipe.
+   Les cartes d'équipe s'étirent pour que leur bas soit au même niveau que celui du calendrier. */
+.pj-top     { column-gap: 32px; row-gap: 32px; }
+.pj-members { --members-gap: 12px; gap: var(--members-gap); }
+
+/* ---- Calendrier --------------------------------------------------------- */
+/* --cell = taille d'une case (plus petit = calendrier plus petit) · --cal-gap = espace entre les cases */
+.pj-cal       { --cell: 34px; --cal-gap: 5px; }
+.pj-cal-grid  { display: grid; grid-template-columns: repeat(7, var(--cell)); gap: var(--cal-gap); width: fit-content; }
+.pj-cal-cell  { width: var(--cell); height: var(--cell); }
+/* Case « déployée » au clic : hauteur = 2 cases (le nombre de tâches apparaît) */
+/* Couleurs de la charge d'une journée (comme GitHub : du plus clair au plus foncé) */
+.pj-cal { --lvl1: #b7d0ee; --lvl2: #7fa7d6; --lvl3: #2f6fb8; --lvl4: #07264a; --lvl1-text: #07264a; --lvl2-text: #07264a; --lvl3-text: #fff; --lvl4-text: #fff; }
+.pj-cal [data-level="1"] { background: var(--lvl1); color: var(--lvl1-text); }
+.pj-cal [data-level="2"] { background: var(--lvl2); color: var(--lvl2-text); }
+.pj-cal [data-level="3"] { background: var(--lvl3); color: var(--lvl3-text); }
+.pj-cal [data-level="4"] { background: var(--lvl4); color: var(--lvl4-text); }
+
+.pj-cal-btn      { height: 100%; }
+.pj-cal-btn-open { height: calc(var(--cell) * 2 + var(--cal-gap)); }
+
+.pj-cal-month   { --font: var(--f-anton); --size: 36px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.pj-cal-year    { --size: 36px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pj-cal-weekday { --size: 14px; --weight: 500; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pj-cal-day     { --size: 24px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pj-cal-count   { --size: 11px; --weight: 500; --width: 75%; --lh: 1.05; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Cartes d'équipe ---------------------------------------------------- */
+.pj-member-name { --size: 22px; --weight: 480; --width: 75%; --lh: 0.7; --ls: -0.04em; --x: 0px; --y: 0px; }
+.pj-member-sub  { --size: 17px; --weight: 340; --width: 75%; --lh: 0.7; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Liste des projets -------------------------------------------------- */
+/* margin-top = distance entre le haut de page et la liste */
+.pj-list { margin-top: 40px; }
+
+.pj-row-type      { --size: 13px; --weight: 360; --width: 75%; --lh: 0.5; --ls: 0em; --x: 0px; --y: 0px; }
+.pj-row-titre     { --size: 25px; --weight: 530; --width: 70%; --lh: 0.6;    --ls: 0em; --x: 0px; --y: 0px; }
+.pj-row-client    { --size: 18px; --weight: 420; --width: 75%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.pj-row-voir      { --size: 15px; --weight: 400; --width: 75%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.pj-row-ech-label { --size: 17px; --weight: 420; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pj-row-ech       { --size: 17px; --weight: 420; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pj-ring-pct      { --size: 25px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }

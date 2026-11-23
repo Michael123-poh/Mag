@@ -1,0 +1,95 @@
+/* ==========================================================================
+   SYSTÈME DE TEXTE — mode d'emploi
+   ==========================================================================
+
+   Chaque texte réglable porte la classe  "t"  + sa propre classe
+   (ex. <p className="t d-flow-amount">). Cette propre classe est définie
+   dans le fichier CSS de la page (ex. src/pages/dashboard.css) avec ces
+   variables :
+
+     --font    police                       var(--f-acumin) · var(--f-impact) · var(--f-anton)
+                                            (optionnel : absent = police par défaut, Acumin)
+     --size    taille de la police          ex. 28px
+     --weight  épaisseur (gras)             100 très fin · 400 normal · 600 semi-gras · 700 gras · 900 noir
+     --width   largeur des lettres          50% ultra-condensé · 75% condensé · 100% normal · 115% large
+     --lh      interligne (line-height)     1 = serré · 1.25 · 1.5 = aéré  (ou une valeur en px)
+     --ls      espacement des lettres       0em normal · 0.05em plus large · -0.02em plus serré
+     --x       décalage horizontal          positif → vers la droite · négatif → vers la gauche
+     --y       décalage vertical            positif → vers le bas   · négatif → vers le haut
+
+   Exemples :
+     plus gros              →  --size: 34px;
+     plus gras              →  --weight: 700;
+     passer en normal       →  --width: 100%;
+     passer en condensé     →  --width: 70%;
+     passer en Impact       →  --font: var(--f-impact);
+     descendre              →  --y: 6px;
+     reculer à gauche de 10px → --x: -10px;
+
+   Notes :
+   - --weight et --width ne marchent qu'avec Acumin Variable (police variable).
+     Impact et Anton n'ont qu'une seule épaisseur et une seule largeur.
+   - Le décalage (--x / --y) déplace seulement le texte, sans pousser les voisins.
+   - Pour trouver un texte : cherchez son nom de classe dans le fichier CSS de la page.
+   ========================================================================== */
+
+/* Acumin Variable Concept : axes wght 100–900, wdth 50–115.
+   Source : police installée sur le PC (local) ou fichier public/fonts/. */
+@font-face {
+  font-family: "Acumin Variable Concept";
+  src:
+    local("Acumin Variable Concept"),
+    url("/fonts/AcuminVariableConcept.otf") format("opentype");
+  font-weight: 100 900;
+  font-stretch: 50% 115%;
+  font-display: swap;
+}
+
+:root {
+  --f-acumin: "Acumin Variable Concept", "Barlow Condensed", system-ui, sans-serif;
+  --f-impact: Impact, "Haettenschweiler", "Arial Narrow Bold", "Anton", sans-serif;
+  --f-anton: "Anton", "Barlow Condensed", sans-serif;
+}
+
+@property --x {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --y {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+:where(.t) {
+  font-family: var(--font, inherit);
+  font-size: var(--size, inherit);
+  font-weight: var(--weight, inherit);
+  font-stretch: var(--width, inherit);
+  line-height: var(--lh, inherit);
+  letter-spacing: var(--ls, inherit);
+  position: relative;
+  left: var(--x);
+  top: var(--y);
+}
+
+/* Lien « Voir » par défaut (chaque page peut le surcharger avec sa propre classe) */
+.voir {
+  --size: 13px;
+  --weight: 500;
+  --width: 75%;
+  --lh: 1.2;
+  --ls: 0em;
+  --x: 0px;
+  --y: 0px;
+}
+
+/* Textes par défaut des cartes « dossier » (pages qui ne définissent pas leur propre préfixe) */
+.folder-title   { --size: 18px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.folder-count   { --size: 38px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.folder-caption { --size: 15px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.folder-card    { max-width: 250px; }
+.folder-avatars { --x: 0px; --y: 0px; }
+.folder-tab     { --size: 14px; --weight: 500; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }

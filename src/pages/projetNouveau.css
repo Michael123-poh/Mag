@@ -1,0 +1,30 @@
+/* Fiche « Nouveau projet » : s'appuie sur clientNouveau.css et prestationNouveau.css (même tableau de contrôle : cases, cercles, boutons, pilules, total…).
+   Ici : seulement la liste des services à préciser et la ligne de prix de chaque service.
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y). */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+.pjn-page {
+  --spec-gap: 14px;              /* espace entre deux services de la liste */
+  --spec-pad: 14px 18px;         /* espace dans la case d'un service (haut-bas gauche-droite) */
+  --spec-radius: 16px;           /* arrondi de la case d'un service */
+  --price-w: 230px;              /* largeur de la case du prix */
+  --price-gap: 8px;              /* espace entre deux lignes de prix */
+}
+
+/* ==========================================================================
+   2. TEXTES
+   ========================================================================== */
+.pjn-split { --size: 18px; --weight: 600; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; text-decoration: underline; cursor: pointer; }  /* « Répartir également » */
+.pjn-hint { --size: 18px; --weight: 400; --width: 75%; --lh: 1.3; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.7; margin-bottom: 10px; }  /* « Le bouquet Graine contient : » */
+
+/* ==========================================================================
+   MISE EN FORME
+   ========================================================================== */
+.pjn-specs { display: flex; flex-direction: column; gap: var(--spec-gap); }
+.pjn-spec  { display: flex; flex-direction: column; gap: 10px; padding: var(--spec-pad); border-radius: var(--spec-radius); background: rgb(255 255 255 / 55%); border: 2px solid transparent; }
+.pjn-spec[data-invalid="true"] { border-color: var(--color-danger); }
+.pjn-price { padding: calc(var(--price-gap) / 2) 0; }
+.pn-total[data-invalid="true"] { box-shadow: 0 0 0 2px var(--color-danger); }
+.pjn-price-input { width: var(--price-w); max-width: 50%; }

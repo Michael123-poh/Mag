@@ -1,0 +1,5 @@
+/* Fiche « Entrée de stock » : s'appuie sur clientNouveau.css et prestationNouveau.css (même tableau de contrôle).
+   Ici : seulement la petite phrase d'explication sous les choix.
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y). */
+
+.sn-hint { --size: 17px; --weight: 400; --width: 75%; --lh: 1.3; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.65; }  /* phrase d'explication sous les pilules */

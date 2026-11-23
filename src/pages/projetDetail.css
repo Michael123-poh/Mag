@@ -1,0 +1,157 @@
+/* Textes et mise en page de la page Détail d'un projet.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+
+   Variables : --font (police) · --size (taille) · --weight (gras) · --width (largeur des lettres)
+               --lh (interligne) · --ls (espacement des lettres) · --x / --y (position) */
+
+/* ---- En-tête ------------------------------------------------------------ */
+.pd-title      { --font: var(--f-anton); --size: 38px; --weight: 400; --width: 75%; --lh: 0.8; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-date-start { --size: 20px; --weight: 400; --width: 70%; --lh: 0.7;   --ls: 0em; --x: 0px; --y: 0px; }
+.pd-date-sep   { --size: 17px; --weight: 400; --width: 65%; --lh: 0.5;   --ls: 0em; --x: 0px; --y: -2px; }
+.pd-date-end   { --size: 20px; --weight: 400; --width: 70%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.pd-repart     { --size: 28px; --weight: 385; --width: 72%; --lh: 0.8; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-new-btn    { --size: 20px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* Chevron « ⌄ » et bonhommes : ils suivent le mot « Taches » sur sa ligne
+   --tools-gap = espace entre « Taches », le chevron et les bonhommes (plus petit = plus proches du mot)
+   --chev-size = taille du chevron · --chev-stroke = épaisseur de son trait
+   --tools-x = décalage horizontal du chevron et des bonhommes (négatif = vers la gauche) · --tools-y = vertical (négatif = vers le haut) */
+.pd-repart-btn { --chev-size: 22px; --chev-stroke: 3.85; --tools-gap: 4px; --tools-x: 0px; --tools-y: 0px; }
+.pd-repart-row { gap: var(--tools-gap); }
+/* Bouton « Gestion des paiements » : au survol le texte passe à l'orange d'accent (--repart-hover), le bouton monte un peu ; au clic il s'enfonce */
+.pd-repart-btn { --repart-hover: var(--color-accent); --repart-lift: -2px; transition: transform 170ms ease; }
+.pd-repart-btn .pd-repart { transition: color 170ms ease; }
+@media (hover: hover) {
+  .pd-repart-btn:hover { transform: translateY(var(--repart-lift)); }
+  .pd-repart-btn:hover .pd-repart { color: var(--repart-hover); }
+  .pd-repart-btn:active { transform: scale(0.97); }
+}
+.pd-chevron    { width: var(--chev-size); height: var(--chev-size); stroke-width: var(--chev-stroke); position: relative; left: var(--tools-x); top: var(--tools-y); margin-top: 6px; }
+.pd-members    { position: relative; left: var(--tools-x); top: var(--tools-y); margin-left: 6px; }
+
+/* ---- Cartes de tâches (à faire / faites / en cours), façon Trello -------- */
+/* column-gap = espace horizontal entre les trois colonnes · row-gap = espace vertical (écran étroit)
+   --task-h = hauteur de chaque tâche (la même pour toutes) · --task-gap = espace entre deux tâches · --task-radius = arrondi
+   --task-pad-x = espace à gauche/droite dans une tâche · --task-bg / --task-bg-hover = couleur au repos / au survol
+   --task-bar-w = épaisseur de la barre de couleur à gauche · --slot-line = couleur du cadre de l'emplacement de dépôt */
+.pd-cards      { column-gap: 20px; row-gap: 20px; }
+.pd-cards, .pd-ghost { --task-h: 72px; --task-gap: 10px; --task-radius: 16px; --task-pad-x: 14px; --task-bg: var(--color-surface); --task-bg-hover: #e8eef7; --task-bar-w: 4px; --slot-line: var(--color-gaia-200); }
+.pd-column     { min-height: 140px; }
+.pd-tasks      { display: flex; flex-direction: column; gap: var(--task-gap); min-height: var(--task-h); }
+.pd-task-item  { list-style: none; cursor: grab; touch-action: none; user-select: none; }
+.pd-task-card  { height: var(--task-h); padding: 8px var(--task-pad-x); gap: 12px; border-radius: var(--task-radius); background: var(--task-bg); transition: background-color 0.15s ease; }
+.pd-task-item:hover .pd-task-card { background: var(--task-bg-hover); }
+.pd-task-bar   { width: var(--task-bar-w); }
+.pd-task-clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+/* Emplacement où la tâche tombera */
+.pd-slot       { border: 2px dashed var(--slot-line); border-radius: var(--task-radius); }
+/* Tâche qui suit le pointeur */
+.pd-ghost      { position: fixed; z-index: 60; pointer-events: none; transform: rotate(2deg); box-shadow: 0 14px 30px rgb(7 38 74 / 25%); border-radius: var(--task-radius); background: #fff; cursor: grabbing; }
+.pd-ghost .pd-task-card { background: #fff; border-radius: var(--task-radius); height: 100%; padding: 8px var(--task-pad-x); gap: 12px; }
+.pd-ghost .pd-task-bar  { width: var(--task-bar-w); }
+body.pd-dragging, body.pd-dragging * { cursor: grabbing !important; user-select: none !important; }
+
+.pd-card-title { --size: 25.8px; --weight: 600; --width: 65%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pd-task       { --size: 20.5px; --weight: 390; --width: 68%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-task-note  { --size: 15px; --weight: 400; --width: 75%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Gestion des tâches (planning) -------------------------------------- */
+.pd-section    { --size: 25.5px; --weight: 700; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pd-day-name   { --size: 13px; --weight: 400; --width: 75%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-day-date   { --size: 13px; --weight: 400; --width: 75%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-hour       { --size: 13px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pd-block-name { --size: 19px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.pd-block-text { --size: 19px; --weight: 400; --width: 75%; --lh: 1.05; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Planning : cartes texturées + trait de l'heure actuelle ------------- */
+/* Cartes de tâches : fini mat « soft touch » — un grain très fin, un léger dégradé et du relief, rien de plus
+   --grain = intensité du grain (0 = lisse · 0.15 = marqué) · --sheen = éclaircie en haut · --shade = assombrissement en bas
+   --block-shadow = ombre sous la carte · --block-edge = liseré clair sur le bord haut */
+.pd-timeline { --grain: 0.07; --sheen: 0.1; --shade: 0.12; --block-shadow: 0 6px 14px rgb(7 38 74 / 24%), 0 1px 3px rgb(7 38 74 / 16%); --block-edge: rgb(255 255 255 / 18%); }
+.pd-block {
+  background-image: linear-gradient(180deg, rgb(255 255 255 / var(--sheen)) 0%, transparent 40%, rgb(0 0 0 / var(--shade)) 100%);
+  box-shadow: var(--block-shadow), inset 0 1px 0 var(--block-edge);
+}
+.pd-block > * { position: relative; z-index: 1; }
+.pd-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--grain);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.6 -0.2'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+}
+
+/* Colonne du jour en cours : une simple teinte un peu plus sombre qui s'estompe vers le bas (aucune bordure)
+   --today-bg-top / --today-bg-bottom = teinte en haut / en bas (0% = invisible) */
+.pd-timeline { --today-bg-top: rgb(9 48 93 / 6%); --today-bg-bottom: rgb(9 48 93 / 2%); }
+.pd-today-col { border-radius: 14px; background: linear-gradient(180deg, var(--today-bg-top), var(--today-bg-bottom)); }
+.pd-day-today  { position: relative; }
+.pd-day-today::after { content: ""; position: absolute; left: 50%; bottom: 6px; width: 22px; height: 3px; transform: translateX(-50%); border-radius: 9999px; background: var(--color-gaia-900); }
+
+/* Trait de l'heure actuelle : --now-color = couleur · --now-w = épaisseur du trait · --now-dot = diamètre du rond du début */
+.pd-timeline { --now-color: var(--color-gaia-900); --now-w: 2px; --now-dot: 12px; }
+.pd-now-line { height: var(--now-w); transform: translateY(-50%); background: var(--now-color); box-shadow: 0 0 0 1px rgb(255 255 255 / 70%); }
+.pd-now-dot  { width: var(--now-dot); height: var(--now-dot); transform: translate(2px, -50%); border-radius: 9999px; background: var(--now-color); box-shadow: 0 0 0 2px #fff; }
+
+/* ---- Navigation du planning (semaine précédente / suivante) --------------- */
+/* --week-btn = taille des ronds des flèches · --week-gap = espace entre les éléments */
+.pd-week        { --week-btn: 34px; --week-gap: 8px; gap: var(--week-gap); }
+.pd-week-btn    { display: inline-flex; align-items: center; justify-content: center; width: var(--week-btn); height: var(--week-btn); border-radius: 9999px; background: #fff; color: var(--color-gaia-900); cursor: pointer; transition: background-color 0.15s ease; }
+.pd-week-btn:hover:not(:disabled) { background: var(--color-gaia-200); }
+.pd-week-btn:disabled { opacity: 0.3; cursor: default; }
+.pd-week-today  { padding: 4px 14px; border-radius: 9999px; background: var(--color-gaia-700); color: #fff; cursor: pointer; }
+.pd-week-label  { --size: 20px; --weight: 500; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; min-width: 120px; text-align: center; }
+.pd-week-text   { --size: 17px; --weight: 500; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Tâches sans date (« À planifier ») sous le planning ------------------- */
+.pd-unplanned       { gap: 8px; padding: 0 16px 18px; }
+.pd-unplanned-chip  { padding: 6px 14px; border-radius: 9999px; background: var(--color-surface); color: var(--color-gaia-900); cursor: pointer; transition: background-color 0.15s ease; }
+.pd-unplanned-chip:hover { background: var(--color-gaia-200); }
+.pd-unplanned-label { --size: 16px; --weight: 500; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; margin-right: 4px; }
+.pd-unplanned-text  { --size: 16px; --weight: 400; --width: 70%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Fiche d'une tâche (clic sur une tâche) --------------------------------- */
+/* --sheet-w = largeur · --section-gap = espace entre les blocs */
+.pd-sheet        { --sheet-w: 460px; --section-gap: 22px; }
+.pd-sheet-panel  { max-width: var(--sheet-w); max-height: 92vh; overflow-y: auto; row-gap: var(--section-gap); animation: pd-sheet-in 160ms ease-out; }
+.pd-sheet-section { display: flex; flex-direction: column; row-gap: 6px; }
+.pd-sheet-notes  { display: flex; flex-direction: column; row-gap: 4px; }
+/* Sous-tâche à cocher : --box = taille de la case · --box-on = couleur quand elle est validée */
+.pd-sheet        { --box: 24px; --box-on: var(--color-gaia-700); }
+.pd-sheet-note   { gap: 12px; padding: 4px 0; cursor: pointer; }
+.pd-sheet-box    { width: var(--box); height: var(--box); border-radius: 8px; border: 2px solid var(--color-gaia-700); color: #fff; transition: background-color 0.15s ease; }
+.pd-sheet-box[data-on="true"] { background: var(--box-on); border-color: var(--box-on); }
+.pd-sheet-count  { --size: 16px; --weight: 400; opacity: 0.6; }
+@keyframes pd-sheet-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+.pd-sheet-name  { --size: 28px; --weight: 700; --width: 70%; --lh: 1.05; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-sheet-sub   { --size: 16px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; margin-top: 4px; }
+.pd-sheet-title { --size: 19px; --weight: 700; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+.pd-sheet-date  { --size: 26px; --weight: 500; --width: 70%; --lh: 1.1;  --ls: 0em; --x: 0px; --y: 0px; }
+.pd-sheet-hours { --size: 19px; --weight: 400; --width: 70%; --lh: 1.2;  --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ---- Gestion des paiements (fenêtre d'un projet) --------------------------
+   --pay-gap = espace entre deux services · --pay-pad = espace dans la carte d'un service */
+.pd-pay          { --sheet-w: 520px; --pay-gap: 12px; --pay-pad: 14px 16px; }
+.pd-pay-list     { gap: var(--pay-gap); }
+.pd-pay-totals   { gap: 10px; }
+.pd-pay-card     { padding: var(--pay-pad); display: flex; flex-direction: column; row-gap: 8px; }
+.pd-pay-hist     { padding: 10px 0; border-bottom: 1px solid rgb(9 48 93 / 12%); }
+.pd-pay-form     { display: flex; flex-direction: column; row-gap: 8px; }
+.pd-pay-detail   { display: flex; flex-direction: column; row-gap: 4px; padding-top: 8px; border-top: 1px solid rgb(9 48 93 / 15%); }
+.pd-pay-chip     { padding: 6px 14px; border-radius: 9999px; background: #fff; cursor: pointer; }
+.pd-pay-chip[aria-checked="true"] { background: var(--color-gaia-700); color: #fff; }
+.pd-pay-tab      { padding: 7px 16px; border-radius: 9999px; background: var(--color-surface); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+.pd-pay-tab[aria-selected="true"] { background: var(--color-gaia-700); color: #fff; }
+.pd-pay-chip .pd-pay-btn, .pd-pay-tab .pd-pay-btn { padding: 0; }
+.pd-pay-btn:disabled { opacity: 0.35; cursor: default; }
+.pd-pay-name     { --size: 19px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-pay-meta     { --size: 15px; --weight: 400; --width: 70%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-pay-label    { --size: 16px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-pay-total    { --size: 26px; --weight: 500; --width: 70%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-pay-pill     { --size: 16px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.pd-pay-btn      { --size: 16px; --weight: 600; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; padding: 7px 16px; cursor: pointer; }
+.pd-pay-input    { --size: 18px; --weight: 500; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; height: 40px; padding: 0 14px; }
+.pd-pay-error    { --size: 15px; --weight: 400; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; color: var(--color-danger); }

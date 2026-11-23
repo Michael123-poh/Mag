@@ -1,0 +1,109 @@
+/* Effets au survol de la souris (et au clavier) sur tous les boutons de l'application.
+
+   ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  1. TABLEAU DE CONTRÔLE : changez les valeurs de .hv-panel (ci-dessous)  ║
+   ║  2. RÈGLES : quels boutons reçoivent quel effet                          ║
+   ╚══════════════════════════════════════════════════════════════════════════╝
+   Les effets ne s'appliquent qu'aux boutons actifs (un bouton grisé ne réagit pas) et seulement sur un appareil avec souris. */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+:root {
+  --hv-ms: 170ms;                          /* durée de la transition (plus petit = plus sec) */
+
+  /* ----- Boutons pleins (bleu foncé : Suivant, Valider, + créer Tache…) ----- */
+  --hv-primary-bg: var(--color-gaia-500);  /* couleur du bouton au survol */
+  --hv-lift: -2px;                         /* de combien il monte (0 = reste en place) */
+  --hv-shadow: 0 8px 16px rgb(9 48 93 / 28%); /* ombre sous le bouton au survol (none = aucune) */
+  --hv-press: 0.96;                        /* taille au clic (1 = ne rétrécit pas) */
+
+  /* ----- Boutons clairs (pastilles blanches, grises, pilules de choix) ----- */
+  --hv-soft-bg: var(--color-gaia-200);     /* couleur au survol */
+
+  /* ----- Boutons-texte (Détail, Annuler, ← Retour…) ----- */
+  --hv-link: var(--color-gaia-500);        /* couleur du texte au survol */
+
+  /* ----- Cartes cliquables (service d'un projet, commande d'un produit) ----- */
+  --hv-card-bg: #e8eef7;                   /* fond au survol */
+  --hv-card-shadow: 0 6px 14px rgb(9 48 93 / 12%);
+}
+
+/* ==========================================================================
+   2. RÈGLES
+   ========================================================================== */
+
+/* Tous les boutons : transition douce (les boutons qui ont déjà leur propre transition la gardent) */
+button {
+  transition: background-color var(--hv-ms) ease, color var(--hv-ms) ease, transform var(--hv-ms) ease, box-shadow var(--hv-ms) ease, opacity var(--hv-ms) ease;
+}
+
+/* Navigation au clavier : un contour net autour du bouton qui a le focus */
+button:focus-visible {
+  outline: 2px solid var(--color-gaia-500);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  /* Boutons pleins : ils s'éclaircissent, montent un peu et projettent une ombre */
+  button.bg-gaia-700:not(:disabled):hover,
+  button.bg-accent:not(:disabled):hover {
+    background-color: var(--hv-primary-bg);
+    transform: translateY(var(--hv-lift));
+    box-shadow: var(--hv-shadow);
+  }
+  button.bg-gaia-700:not(:disabled):active,
+  button.bg-accent:not(:disabled):active {
+    transform: translateY(0) scale(var(--hv-press));
+    box-shadow: none;
+  }
+
+  /* Boutons clairs : fond bleu clair et légère montée */
+  button.bg-white:not(:disabled):hover,
+  button.bg-surface:not(:disabled):hover,
+  button.border:not([class*="bg-"]):not(:disabled):hover {
+    background-color: var(--hv-soft-bg);
+    transform: translateY(var(--hv-lift));
+  }
+  button.bg-white:not(:disabled):active,
+  button.bg-surface:not(:disabled):active,
+  button.border:not([class*="bg-"]):not(:disabled):active {
+    transform: translateY(0) scale(var(--hv-press));
+  }
+
+  /* Pilules de choix non sélectionnées (Facebook, Caisse, Rendez-vous…) */
+  .pd-pay-chip:not([aria-checked="true"]):hover,
+  .pr-pay-chip:not([aria-checked="true"]):hover,
+  .fd-format:not([aria-checked="true"]):hover,
+  .rp-chip:not([aria-checked="true"]):hover,
+  .stk-ord-chip:not([aria-checked="true"]):hover,
+  .cs-form-chip:not([aria-checked="true"]):hover,
+  .pd-pay-tab:not([aria-selected="true"]):hover {
+    background-color: var(--hv-soft-bg);
+    transform: translateY(var(--hv-lift));
+  }
+
+  /* Boutons-texte : le texte prend la couleur du survol et se souligne */
+  button.text-gaia-700:not([class*="bg-"]):not(:disabled):hover {
+    color: var(--hv-link);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  /* Cartes cliquables */
+  .pd-pay-card:hover,
+  .stk-ord:hover {
+    background-color: var(--hv-card-bg);
+    box-shadow: var(--hv-card-shadow);
+  }
+}
+
+.pd-pay-card,
+.stk-ord {
+  transition: background-color var(--hv-ms) ease, box-shadow var(--hv-ms) ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button, .pd-pay-card, .stk-ord { transition-duration: 1ms; }
+  button:hover, button:active { transform: none !important; }
+}

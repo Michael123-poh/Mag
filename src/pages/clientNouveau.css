@@ -1,0 +1,228 @@
+/* Fiche « Nouveau partenaire » (création d'un client en deux parties).
+
+   ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  1. TABLEAU DE CONTRÔLE : toutes les tailles et proportions (.nc-page)   ║
+   ║  2. TEXTES : chaque texte a sa classe (taille, gras, largeur, x/y…)      ║
+   ╚══════════════════════════════════════════════════════════════════════════╝
+   Pour les textes, voir le mode d'emploi en haut de src/styles/typography.css
+   (--font · --size · --weight · --width · --lh · --ls · --x · --y).
+   Pour tout le reste, changez simplement les valeurs ci-dessous : une valeur plus grande = plus grand. */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+.nc-page {
+  /* ----- Page ----- */
+  --page-pad-top: 48px;          /* marge au-dessus du titre */
+  --page-pad-x: 7vw;             /* marge gauche/droite (7vw = 7 % de la largeur de l'écran) */
+  --page-pad-bottom: 40px;       /* marge en bas */
+
+  /* ----- Zone du formulaire (les champs) ----- */
+  --form-top: 70px;              /* distance entre l'en-tête et les champs */
+  --form-w: 600px;               /* largeur de toute la zone des champs (les 2 colonnes) */
+  --col-gap: 30px;               /* espace horizontal entre 2 champs côte à côte */
+  --row-gap: 26px;               /* espace vertical entre 2 lignes de champs */
+  --label-gap: 10px;             /* espace entre le titre d'un champ (ex. « Noms ») et sa case */
+
+  /* ----- Cases blanches (champs, listes déroulantes, numéro) ----- */
+  --input-h: 47.2px;               /* hauteur des cases */
+  --input-radius: 16px;          /* arrondi des coins (0 = carré · 26px = pilule) */
+  --input-pad-x: 18px;           /* espace entre le bord de la case et le texte */
+  --input-border: 2px;           /* épaisseur du contour au clic / en cas d'erreur */
+  --chevron-size: 22px;          /* taille de la flèche des listes déroulantes */
+
+  /* ----- Numéro de téléphone ----- */
+  --phone-gap: 24px;             /* espace entre le drapeau et la case du numéro */
+  --flag-w: 30px;                /* largeur du drapeau */
+  --flag-h: 25px;                /* hauteur du drapeau */
+  --caret-w: 16px;               /* largeur du petit triangle ▼ */
+  --caret-h: 16px;               /* hauteur du petit triangle ▼ */
+  --country-list-w: 190px;       /* largeur du menu des pays */
+
+  /* ----- Indicateur 1 ---- 2 (et la voiture) ----- */
+  --stepper-top: 100px;           /* distance entre les champs et les cercles */
+  --circle: 50px;                /* diamètre des cercles */
+  --track-w: 130px;              /* longueur de la ligne en tirets entre les 2 cercles */
+  --track-h: 3px;                /* épaisseur des tirets */
+  --dash: 10px;                  /* longueur d'un tiret */
+  --dash-gap: 14px;              /* espace entre deux tirets */
+  --car-w: 90px;                 /* taille de la voiture sur l'indicateur (l'image a de la marge transparente : la voiture visible fait ~40 % de cette valeur) */
+  --car-y: -62%;                 /* hauteur de la voiture par rapport aux tirets (-50% = centrée · plus négatif = plus haut) */
+  --drive: 2500ms;               /* durée du trajet de la voiture d'un cercle au suivant (plus grand = plus lent) */
+
+  /* ----- Transition entre la partie 1 et la partie 2 ----- */
+  --swap-ms: 500ms;              /* durée de la sortie, puis de l'entrée, des champs (plus petit = plus rapide) */
+  --swap-shift: 60px;            /* distance parcourue par les champs en glissant (0 = simple fondu) */
+
+  /* ----- Tremblement d'un champ mal rempli ----- */
+  --shake-px: 9px;               /* amplitude du tremblement (plus grand = plus fort) */
+  --shake-ms: 420ms;             /* durée du tremblement */
+
+  /* ----- Boutons ----- */
+  --button-w: 295px;             /* largeur du bouton Suivant / Valider */
+  --button-h: 45px;              /* hauteur du bouton */
+  --button-radius: 9999px;       /* arrondi (9999px = pilule · 12px = coins légèrement arrondis) */
+  --button-top: 67px;            /* distance entre les cercles et le bouton */
+  --back-top: 18px;              /* distance entre le bouton et le lien « ← Retour » */
+
+  /* ----- Écran final (voiture au centre + coche verte) ----- */
+  --done-top: 90px;              /* distance entre l'en-tête et la voiture */
+  --done-car-w: 320px;           /* taille de la voiture (la voiture visible fait ~40 % de cette valeur) */
+  --badge: 96px;                 /* diamètre du cercle blanc de la coche */
+  --badge-gap: -30px;            /* espace voiture → cercle (négatif = plus proche) */
+  --swoosh-w: 58%;               /* taille de la coche dans le cercle */
+  --swoosh-stroke: 4.4;          /* épaisseur de la coche */
+  --ok: #1fa355;                 /* couleur de la coche */
+  --done-text-gap: 24px;         /* espace cercle → texte « Partenaire enregistré » */
+  --done-button-gap: 30px;       /* espace texte → bouton « Retour aux clients » */
+
+  min-height: 100vh;
+  padding: var(--page-pad-top) var(--page-pad-x) var(--page-pad-bottom);
+  background: var(--color-surface);
+  color: var(--color-gaia-900);
+}
+
+/* ==========================================================================
+   2. TEXTES
+   ========================================================================== */
+.nc-title        { --font: var(--f-anton); --size: 40px; --weight: 400; --width: 90%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; color: var(--color-gaia-700); }
+.nc-subtitle     { --size: 20px; --weight: 400; --width: 70%; --lh: 0.82;   --ls: 0em; --x: 0px; --y: 0px; }
+
+.nc-label        { --font: var(--f-acumin); --size: 25px; --weight: 600; --width: 50%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* « Noms », « Ville »… · Acumin Variable Concept ExtraCondensed Semibold (--weight 600 = Semibold · --width 62.5% = ExtraCondensed) */
+.nc-field        { --size: 19px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }  /* texte tapé dans les cases */
+.nc-error        { --size: 16px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; color: var(--color-danger); }
+.nc-unit-text    { --size: 18px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* « xaf » */
+.nc-dial         { --size: 22px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }  /* « +237 » */
+.nc-country-code { --size: 16px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* « CMR » sous le drapeau */
+.nc-option       { --size: 20px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }  /* lignes du menu des pays */
+.nc-step-num     { --size: 37.5px; --weight: 600; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* 1 et 2 dans les cercles */
+.nc-button       { --size: 25px; --weight: 600; --width: 70%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* Suivant / Valider */
+.nc-back         { --size: 20px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* « ← Retour » */
+.nc-done-text    { --size: 24px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }  /* « Partenaire enregistré · CL-… » */
+
+/* ==========================================================================
+   MISE EN FORME (utilise les variables du tableau de contrôle)
+   ========================================================================== */
+
+/* ---- Formulaire --------------------------------------------------------- */
+.nc-form  { max-width: var(--form-w); margin-top: var(--form-top); }
+.nc-grid  { grid-template-columns: 1fr 1fr; column-gap: var(--col-gap); row-gap: var(--row-gap); }
+.nc-full  { grid-column: 1 / -1; }
+.nc-group { row-gap: var(--label-gap); min-width: 0; }
+.nc-server-error { margin-top: 20px; text-align: center; }
+
+/* Changement de partie : les champs sortent en glissant, la partie suivante entre du côté opposé (vers la droite = Suivant, vers la gauche = Retour) */
+.nc-fields { animation: nc-fields-in 300ms ease-out; }
+.nc-fields[data-dir="next"] { animation: nc-in-next var(--swap-ms) cubic-bezier(0.22, 1, 0.36, 1) both; }
+.nc-fields[data-dir="prev"] { animation: nc-in-prev var(--swap-ms) cubic-bezier(0.22, 1, 0.36, 1) both; }
+.nc-fields[data-leaving="true"][data-dir="next"] { animation: nc-out-next var(--swap-ms) cubic-bezier(0.5, 0, 0.75, 0) both; }
+.nc-fields[data-leaving="true"][data-dir="prev"] { animation: nc-out-prev var(--swap-ms) cubic-bezier(0.5, 0, 0.75, 0) both; }
+@keyframes nc-fields-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes nc-in-next   { from { opacity: 0; transform: translateX(var(--swap-shift)); }  to { opacity: 1; transform: none; } }
+@keyframes nc-in-prev   { from { opacity: 0; transform: translateX(calc(var(--swap-shift) * -1)); } to { opacity: 1; transform: none; } }
+@keyframes nc-out-next  { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(calc(var(--swap-shift) * -1)); } }
+@keyframes nc-out-prev  { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(var(--swap-shift)); } }
+
+/* Champ mal rempli : il tremble à chaque appui sur Suivant / Valider */
+.nc-shake { animation: nc-shake var(--shake-ms) ease-in-out; }
+@keyframes nc-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(calc(var(--shake-px) * -1)); }
+  30% { transform: translateX(var(--shake-px)); }
+  45% { transform: translateX(calc(var(--shake-px) * -0.7)); }
+  60% { transform: translateX(calc(var(--shake-px) * 0.7)); }
+  75% { transform: translateX(calc(var(--shake-px) * -0.35)); }
+  90% { transform: translateX(calc(var(--shake-px) * 0.35)); }
+}
+
+/* Case blanche */
+.nc-input {
+  height: var(--input-h);
+  padding: 0 var(--input-pad-x);
+  border-radius: var(--input-radius);
+  background: #fff;
+  color: var(--color-gaia-900);
+  border: var(--input-border) solid transparent;
+  transition: border-color 0.15s ease;
+}
+.nc-input:focus,
+.nc-input:focus-within { border-color: var(--color-gaia-200); }
+.nc-input[data-invalid="true"] { border-color: var(--color-danger); }
+.nc-input::placeholder { color: var(--color-gaia-900); opacity: 0.55; }
+select.nc-input { padding-right: calc(var(--input-pad-x) + var(--chevron-size) + 8px); cursor: pointer; }
+.nc-chevron { right: var(--input-pad-x); width: var(--chevron-size); height: var(--chevron-size); color: var(--color-gaia-900); }
+.nc-unit    { right: var(--input-pad-x); color: var(--color-gaia-700); opacity: 0.6; }
+.nc-phone-input { gap: 6px; }
+.nc-phone-input .nc-field { height: 100%; padding: 0; }
+
+/* Numéro : drapeau + indicatif */
+.nc-phone        { gap: var(--phone-gap); }
+.nc-country      { gap: 2px; padding: 0; background: none; cursor: pointer; }
+.nc-flag         { display: inline-block; width: var(--flag-w); height: var(--flag-h); border-radius: 2px; box-shadow: 0 0 0 1px rgb(0 0 0 / 8%); }
+.nc-caret        { width: 0; height: 0; border-left: calc(var(--caret-w) / 2) solid transparent; border-right: calc(var(--caret-w) / 2) solid transparent; border-top: var(--caret-h) solid var(--color-gaia-900); }
+.nc-country-list { min-width: var(--country-list-w); }
+
+/* ---- Indicateur 1 ---- 2 et voiture ------------------------------------- */
+.nc-stepper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: var(--stepper-top);
+}
+.nc-circle {
+  position: relative;
+  z-index: 1; /* au-dessus de la voiture : elle sort de derrière un cercle et rentre derrière le suivant */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--circle);
+  height: var(--circle);
+  border-radius: 9999px;
+  background: #fff;
+  color: var(--color-gaia-900);
+  transition: background-color 0.35s ease calc(var(--drive) * 0.75), color 0.35s ease calc(var(--drive) * 0.75);
+}
+.nc-circle[data-on="true"] { background: var(--color-accent); color: #fff; }
+
+.nc-track {
+  width: var(--track-w);
+  height: var(--track-h);
+  background: repeating-linear-gradient(90deg, var(--color-gaia-900) 0 var(--dash), transparent var(--dash) calc(var(--dash) + var(--dash-gap)));
+}
+
+/* La voiture : cachée derrière le cercle 1, elle roule jusqu'au cercle de la partie en cours (--i = numéro de la partie - 1) */
+.nc-car {
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: calc((var(--circle) - var(--car-w)) / 2);
+  width: var(--car-w);
+  max-width: none;
+  transform: translate(calc(var(--i, 0) * (var(--circle) + var(--track-w))), var(--car-y));
+  transition: transform var(--drive) ease-in-out;
+}
+
+/* ---- Boutons ------------------------------------------------------------ */
+.nc-button { width: var(--button-w); max-width: 100%; height: var(--button-h); border-radius: var(--button-radius); margin-top: var(--button-top); cursor: pointer; transition: opacity 0.2s ease; }
+.nc-back   { margin-top: var(--back-top); margin-bottom: 24px; color: var(--color-gaia-700); cursor: pointer; }
+
+/* ---- Écran final : la voiture au centre + coche verte ------------------- */
+.nc-done        { margin-top: var(--done-top); }
+.nc-done-car    { width: var(--done-car-w); max-width: 100%; animation: nc-car-in 1300ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.nc-done-badge  { width: var(--badge); height: var(--badge); margin-top: var(--badge-gap); opacity: 0; animation: nc-badge-in 450ms cubic-bezier(0.3, 1.5, 0.5, 1) 1200ms forwards; }
+.nc-swoosh      { width: var(--swoosh-w); fill: none; stroke: var(--ok); stroke-width: var(--swoosh-stroke); stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: nc-draw 500ms ease-out 1550ms forwards; }
+.nc-done-text   { margin-top: var(--done-text-gap); opacity: 0; animation: nc-fade 400ms ease-out 1900ms forwards; }
+.nc-done-button { margin-top: var(--done-button-gap); opacity: 0; animation: nc-fade 400ms ease-out 2000ms forwards; }
+
+@keyframes nc-car-in   { from { transform: translateX(-60vw); } to { transform: none; } }
+@keyframes nc-badge-in { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes nc-draw     { to { stroke-dashoffset: 0; } }
+@keyframes nc-fade     { to { opacity: 1; } }
+
+@media (max-width: 640px) {
+  .nc-grid { grid-template-columns: 1fr; }
+  .nc-page { --form-top: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nc-car, .nc-fields, .nc-shake, .nc-done-car, .nc-done-badge, .nc-swoosh { animation-duration: 1ms !important; transition-duration: 1ms; }
+}

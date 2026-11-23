@@ -1,0 +1,151 @@
+/* Modèle de facture : un document A4 qui s'affiche à l'écran et s'imprime tel quel.
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y).
+
+   ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  1. TABLEAU DE CONTRÔLE : dimensions, espaces, couleurs (.fd-page)       ║
+   ║  2. TEXTES : chaque texte a sa classe                                    ║
+   ║  3. MISE EN FORME + IMPRESSION                                           ║
+   ╚══════════════════════════════════════════════════════════════════════════╝ */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+.fd-page {
+  /* ----- Feuille ----- */
+  --sheet-w: 210mm;              /* largeur de la feuille (A4 = 210 mm) */
+  --sheet-pad: 16mm 16mm 14mm;   /* marges intérieures (haut, côtés, bas) */
+  --section-gap: 26px;           /* espace entre deux sections */
+  --page-pad: 28px;              /* marge autour de la feuille à l'écran */
+
+  /* ----- Couleurs ----- */
+  --ink: var(--color-gaia-900);  /* couleur des textes */
+  --brand: var(--color-gaia-700);/* titre de la facture, lignes et bandeaux */
+  --soft: #eef3fa;               /* fond des bandeaux et des lignes de total */
+  --line: rgb(9 48 93 / 16%);    /* fins traits qui séparent les lignes */
+  --due: var(--color-accent);    /* « Reste à payer » */
+
+  /* ----- En-tête ----- */
+  --head-line: 3px;              /* épaisseur du trait sous l'en-tête */
+  --meta-cols: 4;                /* nombre de colonnes des références (émission, échéance…) */
+
+  /* ----- Tableaux ----- */
+  --row-pad: 8px;                /* espace au-dessus / au-dessous d'une ligne de tableau */
+  --group-radius: 12px;          /* arrondi du cadre d'une prestation / d'un projet */
+
+  /* ----- Signatures ----- */
+  --sign-h: 70px;                /* hauteur des cases de signature */
+
+  min-height: 100vh;
+  padding: var(--page-pad) 16px;
+  background: var(--color-surface);
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   2. TEXTES
+   ========================================================================== */
+.fd-company     { --font: var(--f-anton); --size: 34px; --weight: 400; --width: 85%; --lh: 0.5; --ls: 0em; --x: 0px; --y: 0px; color: var(--brand); }
+.fd-slogan      { --size: 16px; --weight: 400; --width: 72%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.75; margin-top: 4px; }
+.fd-small       { --size: 14px; --weight: 400; --width: 72%; --lh: 1.02; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.8; }
+.fd-doc-title   { --font: var(--f-anton); --size: 38px; --weight: 400; --width: 85%; --lh: 0.4; --ls: 0.04em; --x: 0px; --y: 0px; color: var(--brand); }
+.fd-number      { --size: 22px; --weight: 600; --width: 70%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-pill        { --size: 14px; --weight: 600; --width: 70%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-label       { --size: 13px; --weight: 600; --width: 70%; --lh: 1; --ls: 0.04em; --x: 0px; --y: 0px; text-transform: uppercase; opacity: 0.6; }
+.fd-value       { --size: 17px; --weight: 500; --width: 72%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-section-title { --size: 20px; --weight: 700; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-client-name { --size: 24px; --weight: 600; --width: 72%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-group-title { --size: 19px; --weight: 600; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-group-total { --size: 20px; --weight: 700; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; white-space: nowrap; }
+.fd-th          { --size: 13px; --weight: 600; --width: 70%; --lh: 1.2; --ls: 0.04em; --x: 0px; --y: 0px; text-transform: uppercase; opacity: 0.6; }
+.fd-td          { --size: 16px; --weight: 400; --width: 72%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-total-label { --size: 18px; --weight: 500; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-total-value { --size: 22px; --weight: 600; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-words       { --size: 16px; --weight: 400; --width: 72%; --lh: 1.4; --ls: 0em; --x: 0px; --y: 0px; margin-top: 14px; }
+.fd-tool        { --size: 17px; --weight: 600; --width: 72%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ==========================================================================
+   3. MISE EN FORME
+   ========================================================================== */
+.fd-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: var(--sheet-w); max-width: 100%; margin: 0 auto 16px; }
+.fd-tool    { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 9999px; cursor: pointer; color: var(--brand); }
+.fd-tool-main { color: #fff; }
+.fd-actions { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+.fd-tool-soft { color: var(--brand); }
+.fd-tool:disabled { opacity: 0.6; cursor: default; }
+.fd-dl-error { width: var(--sheet-w); max-width: 100%; margin: 0 auto 12px; color: var(--color-danger); --size: 15px; --weight: 500; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.fd-formats { display: inline-flex; gap: 6px; padding: 4px; border-radius: 9999px; background: #fff; }
+.fd-format { padding: 0; border-radius: 9999px; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+.fd-format .fd-tool { padding: 8px 16px; }
+.fd-format[aria-checked="true"] { background: var(--brand); color: #fff; }
+.fd-format[aria-checked="true"] .fd-tool { color: #fff; }
+
+.fd-sheet   { width: var(--sheet-w); max-width: 100%; min-height: 297mm; margin: 0 auto; padding: var(--sheet-pad); background: #fff; border-radius: 6px; box-shadow: 0 10px 30px rgb(9 48 93 / 14%); display: flex; flex-direction: column; gap: var(--section-gap); }
+
+.fd-head    { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding-bottom: 18px; border-bottom: var(--head-line) solid var(--brand); }
+.fd-company-lines { margin-top: 10px; display: flex; flex-direction: column; gap: 2px; }
+.fd-head-right { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.fd-pill    { display: inline-block; padding: 4px 14px; border-radius: 9999px; margin-top: 4px; }
+.fd-pill-ok   { background: var(--color-gaia-200); color: var(--color-gaia-900); }
+.fd-pill-part { background: var(--color-gaia-500); color: #fff; }
+.fd-pill-due  { background: var(--color-danger); color: #fff; }
+
+.fd-meta    { display: grid; grid-template-columns: repeat(var(--meta-cols), minmax(0, 1fr)); gap: 14px 20px; padding: 14px 18px; background: var(--soft); border-radius: var(--group-radius); }
+.fd-meta:empty { display: none; }
+.fd-info    { min-width: 0; }
+.fd-info .fd-value { margin-top: 3px; }
+
+.fd-section { display: flex; flex-direction: column; gap: 12px; break-inside: avoid-page; }
+.fd-section-title { padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--brand); }
+.fd-section-num   { display: inline-block; min-width: 1.4em; opacity: 0.55; }
+
+.fd-client  { display: flex; flex-direction: column; gap: 10px; }
+.fd-client-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; }
+
+.fd-group   { border: 1px solid var(--line); border-radius: var(--group-radius); overflow: hidden; break-inside: avoid; }
+.fd-group + .fd-group { margin-top: 4px; }
+.fd-group-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 12px 16px; background: var(--soft); }
+.fd-group-num  { opacity: 0.55; margin-right: 4px; }
+.fd-nodetail   { padding: 12px 16px; }
+
+.fd-table   { width: 100%; border-collapse: collapse; }
+.fd-table th, .fd-table td { padding: var(--row-pad) 16px; text-align: left; vertical-align: top; }
+.fd-table thead th { border-bottom: 1px solid var(--line); }
+.fd-table tbody tr + tr td { border-top: 1px solid var(--line); }
+.fd-num     { text-align: right !important; white-space: nowrap; }
+.fd-line-num { opacity: 0.45; margin-right: 6px; }
+.fd-time    { opacity: 0.55; }
+.fd-section > .fd-table { border: 1px solid var(--line); border-radius: var(--group-radius); overflow: hidden; }
+
+.fd-totals  { width: 55%; margin-left: auto; border-collapse: collapse; }
+.fd-totals td { padding: 8px 14px; }
+.fd-totals tr + tr td { border-top: 1px solid var(--line); }
+.fd-totals .fd-total-value { text-align: right; white-space: nowrap; }
+.fd-total-due td { background: var(--soft); }
+.fd-total-due .fd-total-value { color: var(--due); }
+.fd-total-done td { background: var(--soft); }
+
+.fd-pay     { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; }
+
+.fd-sign    { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; margin-top: auto; padding-top: 10px; break-inside: avoid; }
+.fd-sign-box { height: var(--sign-h); margin-top: 6px; border: 1px dashed var(--line); border-radius: var(--group-radius); }
+.fd-foot    { padding-top: 12px; border-top: 1px solid var(--line); text-align: center; display: flex; flex-direction: column; gap: 4px; }
+
+@media (max-width: 760px) {
+  .fd-page { --meta-cols: 2; }
+  .fd-head { flex-direction: column; }
+  .fd-head-right { align-items: flex-start; text-align: left; }
+  .fd-client-info, .fd-pay { grid-template-columns: 1fr; }
+  .fd-totals { width: 100%; }
+  .fd-sheet { overflow-x: auto; }
+}
+
+/* ==========================================================================
+   IMPRESSION : la feuille seule, sans barre d'outils, couleurs conservées
+   ========================================================================== */
+@media print {
+  html, body, #root { height: auto !important; background: #fff !important; }
+  .fd-page { padding: 0; background: #fff; min-height: 0; }
+  .fd-toolbar { display: none; }
+  .fd-sheet { box-shadow: none; border-radius: 0; margin: 0; width: 100%; min-height: 297mm; }
+  .fd-page, .fd-sheet, .fd-pill, .fd-group-head, .fd-meta, .fd-total-due td, .fd-total-done td { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

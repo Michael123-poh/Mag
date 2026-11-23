@@ -1,0 +1,34 @@
+/* Page « Historique » de la caisse : toutes les transactions.
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y). */
+
+/* ----- Tableau de contrôle ----- */
+.ch-totals  { --totals-top: 24px; --totals-gap: 16px; margin-top: var(--totals-top); gap: var(--totals-gap); }  /* cartes Entrées / Sorties */
+.ch-filters { --filters-top: 24px; --filters-gap: 12px 18px; --search-w: 260px; margin-top: var(--filters-top); gap: var(--filters-gap); }
+.ch-search  { width: var(--search-w); max-width: 100%; height: 42px; padding: 0 18px; }
+.ch-chips   { gap: 8px; }
+.ch-chip    { height: 40px; padding: 0 18px; border-radius: 9999px; background: #fff; color: var(--color-gaia-900); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+.ch-chip:hover { background: var(--color-gaia-200); }
+.ch-chip[aria-checked="true"] { background: var(--color-gaia-700); color: #fff; }
+.ch-table   { --table-top: 24px; --row-pad: 18px; --row-radius: 18px; margin-top: var(--table-top); }
+
+/* ----- Textes ----- */
+.ch-title       { --font: var(--f-anton); --size: 40px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-subtitle    { --size: 22px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-back        { --size: 20px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; cursor: pointer; }
+.ch-total-label { --size: 18px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-total-value { --size: 34px; --weight: 500; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-total-unit  { --size: 16px; --weight: 300; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-chip-text   { --size: 18px; --weight: 500; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-search      { --size: 18px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-th          { --size: 16px; --weight: 400; --width: 70%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-line        { --size: 20px; --weight: 500; --width: 75%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-line-sub    { --size: 15px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.ch-amount      { --size: 22px; --weight: 600; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; white-space: nowrap; }
+
+/* ----- Lignes : fond blanc arrondi au survol ----- */
+.ch-row td                 { transition: background-color 150ms; }
+.ch-row:hover td           { background-color: rgb(255 255 255 / 0.7); }
+.ch-row td:first-child     { border-top-left-radius: var(--row-radius); border-bottom-left-radius: var(--row-radius); padding-left: var(--row-pad); }
+.ch-row td:last-child      { border-top-right-radius: var(--row-radius); border-bottom-right-radius: var(--row-radius); padding-right: var(--row-pad); }
+.ch-table th:first-child   { padding-left: var(--row-pad); }
+.ch-table th:last-child    { padding-right: var(--row-pad); }

@@ -1,0 +1,96 @@
+/* Fiche « Nouvelle prestation » : s'appuie sur clientNouveau.css (même tableau de contrôle : largeur, cases, cercles, voiture, boutons…).
+   Ici : seulement ce qui est propre à la prestation (pilules de choix, recherche du client, lignes de commande, total).
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y). */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+.pn-page {
+  /* ----- Pilules de choix (Service, Couleur, Format, Tirage, Produit) ----- */
+  --chip-gap: 10px;              /* espace entre deux pilules */
+  --chip-h: 46px;                /* hauteur d'une pilule */
+  --chip-pad-x: 22px;            /* espace à gauche/droite du texte */
+  --chip-radius: 9999px;         /* arrondi (9999px = pilule · 10px = carré arrondi) */
+  --chip-on: var(--color-gaia-700);   /* couleur de la pilule choisie */
+
+  /* ----- Recherche du client ----- */
+  --pick-max-h: 340px;           /* hauteur maximale de la liste des clients proposés */
+  --pick-radius: 16px;           /* arrondi de la liste */
+  --pick-row-pad-y: 10px;        /* espace au-dessus/au-dessous de chaque client */
+  --pick-row-pad-x: 18px;        /* espace à gauche/droite */
+
+  /* ----- Zone de texte « Informations diverses » ----- */
+  --textarea-h: 110px;           /* hauteur */
+
+  /* ----- Lignes de commande et récapitulatif ----- */
+  --line-pad-y: 12px;            /* espace au-dessus/au-dessous d'une ligne */
+  --recap-top: 6px;              /* distance au-dessus du récapitulatif */
+
+  /* ----- Total ----- */
+  --total-pad: 16px 20px;        /* espace dans la barre du total (haut-bas gauche-droite) */
+  --total-radius: 14px;          /* arrondi de la barre du total */
+
+  /* ----- Bouton « Ajouter » ----- */
+  --add-h: 42px;                 /* hauteur */
+  --add-w: 130px;                /* largeur */
+}
+
+/* ==========================================================================
+   2. TEXTES
+   ========================================================================== */
+.nc-chip-text    { --size: 20px; --weight: 500; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* texte des pilules */
+.pn-pick-name    { --size: 20px; --weight: 500; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }  /* nom du client proposé */
+.pn-pick-meta    { --size: 15px; --weight: 400; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.6; }  /* code · ville */
+.pn-line-name    { --size: 20px; --weight: 500; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }  /* nom d'une ligne */
+.pn-line-sub     { --size: 16px; --weight: 400; --width: 75%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.6; }  /* 200 × 300 xaf */
+.pn-line-total   { --size: 20px; --weight: 500; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* total d'une ligne */
+.pn-resolved     { --size: 17px; --weight: 400; --width: 75%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.75; }  /* référence et prix du produit choisi */
+.pn-add          { --size: 20px; --weight: 600; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }  /* bouton Ajouter */
+.pn-total-label  { --size: 24px; --weight: 500; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+.pn-total-value  { --size: 34px; --weight: 600; --width: 75%; --lh: 1;   --ls: 0em; --x: 0px; --y: 0px; }
+
+/* ==========================================================================
+   MISE EN FORME (utilise les variables du tableau de contrôle)
+   ========================================================================== */
+
+/* Pilules de choix */
+.nc-chips { gap: var(--chip-gap); }
+.nc-chip {
+  height: var(--chip-h);
+  padding: 0 var(--chip-pad-x);
+  border-radius: var(--chip-radius);
+  background: #fff;
+  color: var(--color-gaia-900);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+.nc-chip:hover { background: var(--color-gaia-200); }
+.nc-chip[aria-checked="true"] { background: var(--chip-on); color: #fff; }
+.nc-chips[data-invalid="true"] .nc-chip { box-shadow: 0 0 0 2px var(--color-danger); }
+
+/* Case non modifiable (ex. prix de la page de photocopie) */
+.nc-static { opacity: 0.8; }
+
+/* Zone de texte */
+.nc-textarea { height: var(--textarea-h); padding-top: 14px; padding-bottom: 14px; }
+
+/* Recherche du client */
+.pn-pick-list { max-height: var(--pick-max-h); border-radius: var(--pick-radius); padding: 6px 0; }
+.pn-pick-row  { padding: var(--pick-row-pad-y) var(--pick-row-pad-x); gap: 4px; cursor: pointer; }
+.pn-pick-row[data-active="true"] { background: var(--color-surface); }
+.pn-pick-empty { padding: var(--pick-row-pad-y) var(--pick-row-pad-x); }
+
+/* Lignes de commande (impression) et récapitulatif */
+.pn-lines, .pn-recap { margin-top: var(--recap-top); }
+.pn-line { padding: var(--line-pad-y) 0; border-bottom: 1px solid rgb(9 48 93 / 18%); }
+.pn-line:last-child { border-bottom: 0; }
+.pn-line-remove { display: inline-flex; padding: 6px; border-radius: 9999px; color: var(--color-gaia-900); cursor: pointer; }
+.pn-line-remove:hover { background: #fff; }
+
+/* Produit choisi + bouton Ajouter */
+.pn-add-box { min-width: 0; }
+.pn-add { height: var(--add-h); width: var(--add-w); cursor: pointer; transition: opacity 0.2s ease; }
+.pn-add:disabled { opacity: 0.45; cursor: default; }
+
+/* Total */
+.pn-total { padding: var(--total-pad); border-radius: var(--total-radius); background: #fff; }

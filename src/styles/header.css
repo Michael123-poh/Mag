@@ -1,0 +1,10 @@
+/* En-tête « Hello Michael ! » + date — partagé par le Dashboard et la page Clients.
+   Règles : voir le mode d'emploi en haut de typography.css */
+
+.hdr-hello      { --font: var(--f-impact); --size: 34px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.hdr-name       { --size: 34px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.hdr-subtitle   { --size: 22px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+
+.hdr-date-number { --size: 46px; --weight: 400; --width: 75%; --lh: 1;    --ls: 0em; --x: 0px; --y: 0px; }
+.hdr-date-day    { --size: 24px; --weight: 400; --width: 75%; --lh: 0.9;  --ls: 0em; --x: 0px; --y: 0px; }
+.hdr-date-month  { --size: 24px; --weight: 400; --width: 75%; --lh: 0.9;  --ls: 0em; --x: 0px; --y: 0px; }

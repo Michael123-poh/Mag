@@ -1,0 +1,130 @@
+/* Page Paramètre (administrateurs) : employés, épargne, machines.
+   Pour les textes : voir le mode d'emploi en haut de src/styles/typography.css (--font · --size · --weight · --width · --lh · --ls · --x · --y).
+
+   ╔══════════════════════════════════════════════════════════════════════════╗
+   ║  1. TABLEAU DE CONTRÔLE : espaces, arrondis, largeurs                    ║
+   ║  2. TEXTES : chaque texte a sa classe (.ps-*)                            ║
+   ║  3. MISE EN FORME                                                        ║
+   ╚══════════════════════════════════════════════════════════════════════════╝ */
+
+/* ==========================================================================
+   1. TABLEAU DE CONTRÔLE
+   ========================================================================== */
+.ps-body, .ps-popup, .ps-overlay {
+  --body-top: 24px;              /* distance entre les onglets et le contenu */
+  --stack-gap: 24px;             /* espace entre deux cartes */
+  --card-pad: 28px;              /* marge intérieure des cartes */
+  --row-pad: 16px 20px;          /* espace dans une ligne de liste (employé, machine) */
+  --row-radius: 18px;            /* arrondi d'une ligne de liste */
+  --popup-w: 680px;              /* largeur des fenêtres de saisie */
+  --popup-pad: 30px;             /* marge intérieure des fenêtres */
+  --form-gap: 18px;              /* espace entre les champs d'un formulaire */
+  --admin: var(--color-accent);  /* couleur de l'étiquette « Administrer » */
+
+  /* Les champs de formulaire (mêmes composants que les formulaires de création) : tailles réduites pour tenir dans une fenêtre */
+  --label-gap: 8px;
+  --input-h: 44px;
+  --input-radius: 14px;
+  --input-pad-x: 16px;
+  --input-border: 2px;
+  --chevron-size: 20px;
+  --chip-gap: 8px;
+  --chip-h: 38px;
+  --chip-pad-x: 16px;
+  --chip-radius: 9999px;
+  --chip-on: var(--color-gaia-700);
+  --textarea-h: 84px;
+}
+
+/* ==========================================================================
+   2. TEXTES
+   ========================================================================== */
+.ps-title      { --font: var(--f-anton); --size: 40px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-subtitle   { --size: 22px; --weight: 400; --width: 75%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-tab-text   { --size: 20px; --weight: 600; --width: 72%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-card-title { --size: 24px; --weight: 700; --width: 72%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-note       { --size: 16px; --weight: 400; --width: 72%; --lh: 1.3; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.7; }
+.ps-name       { --size: 22px; --weight: 600; --width: 72%; --lh: 1.15; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-sub        { --size: 16px; --weight: 400; --width: 72%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.75; }
+.ps-amount     { --size: 24px; --weight: 500; --width: 72%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-unit       { --size: 14px; --weight: 300; --width: 72%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-tag        { --size: 14px; --weight: 500; --width: 72%; --lh: 1.1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-btn        { --size: 17px; --weight: 600; --width: 72%; --lh: 1; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-th         { --size: 14px; --weight: 700; --width: 72%; --lh: 1.2; --ls: 0.02em; --x: 0px; --y: 0px; text-transform: uppercase; opacity: 0.65; }
+.ps-td         { --size: 18px; --weight: 400; --width: 72%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-popup-title { --size: 28px; --weight: 700; --width: 70%; --lh: 1.05; --ls: 0em; --x: 0px; --y: 0px; }
+.ps-popup-sub  { --size: 16px; --weight: 400; --width: 72%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; opacity: 0.7; margin-top: 4px; }
+.ps-check-text { --size: 17px; --weight: 400; --width: 72%; --lh: 1.25; --ls: 0em; --x: 0px; --y: 0px; }
+
+/* Les titres de champ des formulaires (« Nom complet »…) sont plus petits ici que dans les formulaires de création */
+.ps-popup .nc-label  { --size: 18px; }
+.ps-popup .nc-field  { --size: 18px; }
+.ps-popup .nc-error  { --size: 15px; }
+.ps-popup .nc-chip-text { --size: 17px; }
+.ps-card .nc-label   { --size: 18px; }
+.ps-card .nc-field   { --size: 18px; }
+
+/* ==========================================================================
+   3. MISE EN FORME
+   ========================================================================== */
+.ps-tabs   { gap: 8px; margin-top: 22px; }
+.ps-tab    { padding: 10px 22px; border-radius: 9999px; background: #fff; color: var(--color-gaia-900); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+.ps-tab:hover:not([aria-selected="true"]) { background: var(--color-gaia-200); }
+.ps-tab[aria-selected="true"] { background: var(--color-gaia-700); color: #fff; }
+.ps-body   { margin-top: var(--body-top); padding-bottom: 24px; }
+.ps-stack  { display: flex; flex-direction: column; gap: var(--stack-gap); }
+.ps-card   { padding: var(--card-pad); display: flex; flex-direction: column; gap: 12px; }
+.ps-bar    { gap: 12px; margin-bottom: 14px; }
+.ps-btn    { padding: 10px 22px; cursor: pointer; }
+.ps-btn:disabled { cursor: default; }
+.ps-ok     { color: #1fa355; opacity: 1; }
+
+/* Listes (employés, machines) : une ligne cliquable par élément */
+.ps-list   { display: flex; flex-direction: column; gap: 10px; }
+.ps-row    { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: var(--row-pad); border-radius: var(--row-radius); background: #fff; cursor: pointer; transition: background-color 150ms ease, box-shadow 150ms ease; }
+.ps-row:hover { background: #eef3fa; box-shadow: 0 6px 14px rgb(9 48 93 / 10%); }
+.ps-row[data-off="true"] { opacity: 0.55; }
+.ps-card .ps-row { background: var(--color-surface); }
+.ps-card .ps-row:hover { background: #e4ecf7; }
+.ps-mat    { font-weight: 400; opacity: 0.55; margin-left: 8px; font-size: 0.72em; }
+.ps-off    { margin-left: 10px; padding: 2px 10px; border-radius: 9999px; background: var(--color-danger); color: #fff; font-size: 0.65em; font-weight: 600; vertical-align: middle; }
+.ps-salary { text-align: right; white-space: nowrap; flex: none; }
+.ps-chips-line { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.ps-tag    { padding: 3px 10px; border-radius: 9999px; background: var(--color-gaia-200); color: var(--color-gaia-900); }
+.ps-tag-admin { background: var(--admin); color: #fff; }
+.ps-tag-none { background: transparent; border: 1px dashed rgb(9 48 93 / 35%); }
+.ps-conn   { display: flex; align-items: center; gap: 8px; flex: none; }
+.ps-dot    { width: 10px; height: 10px; border-radius: 9999px; background: #b0b8c4; flex: none; }
+.ps-dot[data-on="true"] { background: #1fa355; }
+.ps-dot[data-on="false"] { background: var(--color-danger); }
+
+/* Tableau de l'historique des remises à zéro */
+.ps-table-wrap { overflow-x: auto; margin-top: 6px; }
+.ps-table  { width: 100%; border-collapse: collapse; min-width: 520px; }
+.ps-table th, .ps-table td { padding: 10px 14px; text-align: left; }
+.ps-table thead th { border-bottom: 2px solid rgb(9 48 93 / 12%); }
+.ps-table tbody tr + tr > td { border-top: 1px solid rgb(9 48 93 / 12%); }
+.ps-num    { text-align: right !important; white-space: nowrap; }
+.ps-time   { opacity: 0.55; }
+
+/* Fenêtres de saisie */
+.ps-popup  { max-width: var(--popup-w); max-height: 92vh; overflow-y: auto; padding: var(--popup-pad); gap: 4px; }
+.ps-form   { display: flex; flex-direction: column; gap: var(--form-gap); margin-top: 18px; }
+.ps-form-narrow { max-width: 620px; margin-top: 8px; }
+.ps-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: var(--form-gap) 20px; }
+.ps-full   { grid-column: 1 / -1; }
+.ps-group  { display: flex; flex-direction: column; gap: 10px; }
+.ps-check  { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.ps-check input { width: 20px; height: 20px; accent-color: var(--color-gaia-700); }
+.ps-actions { margin-top: 6px; }
+/* Dans une fenêtre blanche, les cases et pilules sont grises (sinon blanc sur blanc) */
+.ps-popup .nc-input, .ps-card .nc-input { background: var(--color-surface); }
+.ps-popup .nc-chip, .ps-card .nc-chip { background: var(--color-surface); }
+.ps-popup .nc-chip[aria-checked="true"], .ps-card .nc-chip[aria-checked="true"] { background: var(--chip-on); color: #fff; }
+.ps-popup .nc-chip:hover:not([aria-checked="true"]), .ps-card .nc-chip:hover:not([aria-checked="true"]) { background: var(--color-gaia-200); }
+
+@media (max-width: 640px) {
+  .ps-grid { grid-template-columns: 1fr; }
+  .ps-row { flex-direction: column; align-items: flex-start; }
+  .ps-salary { text-align: left; }
+}

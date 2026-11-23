@@ -1,0 +1,12 @@
+/* Page de connexion.
+   Règles : voir le mode d'emploi en haut de src/styles/typography.css
+   --card-w = largeur de la carte de connexion */
+
+.lg-card { max-width: 420px; }
+
+.lg-logo     { --font: var(--f-anton); --size: 52px; --weight: 400; --width: 75%; --lh: 1;   --ls: 0.02em; --x: 0px; --y: 0px; }
+.lg-subtitle { --size: 22px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.lg-label    { --size: 18px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.lg-input    { --size: 22px; --weight: 400; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.lg-error    { --size: 18px; --weight: 500; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
+.lg-button   { --size: 22px; --weight: 600; --width: 75%; --lh: 1.2; --ls: 0em; --x: 0px; --y: 0px; }
